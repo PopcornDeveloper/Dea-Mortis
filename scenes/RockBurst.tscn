@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=4 uid="uid://3uhxbbg53qlt"]
+
+[sub_resource type="Curve" id="Curve_iej6u"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.984694, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qbl4e"]
+curve = SubResource("Curve_iej6u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iej6u"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 51.225
+initial_velocity_min = 5.07
+initial_velocity_max = 23.72
+scale_min = 0.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_qbl4e")
+collision_mode = 1
+collision_friction = 0.6
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nktu7"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_x1i0j"]
+_surfaces = [{
+"aabb": AABB(-0.126596, -0.13, -0.171177, 0.217509, 0.257211, 0.282169),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEAAAACAAUAAAAFAAQAAgADAAUABAAGAAEABgADAAEABQAGAAQABQADAAYA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 7,
+"vertex_data": PackedByteArray("/5QAAEybAACJlV6P//8AAP//5GLmpwAAUu3//6WOAAAlDIVHTJsAAIfGjUsAAAAAAACyv9PMAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qbl4e"]
+resource_name = "rock_Icosphere"
+_surfaces = [{
+"aabb": AABB(-0.126596, -0.13, -0.171177, 0.217509, 0.257211, 0.282169),
+"attribute_data": PackedByteArray("iy7//+giiMMWXa/Xuej//3PRr9f//6/XLbr//0WXiMNz0a/Xoov//xZdr9dFl4jDc9Gv13PRYK///6/XRZeIw3PRYK9z0a/XFl2v1+giiMO5aDmbFl2v17loOZtFl4jDAABgr0UXEYfoIojDRZeIw+iiEYdz0WCv"),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcAGAAZABoAGwAcAB0A"),
+"material": SubResource("StandardMaterial3D_nktu7"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("/5QAAEybPaGJlV6P//89of//5GLmpz2h/5QAAEyb5KclDIVHTJvkp4mVXo///+Sn/5QAAEybcOWHxo1LAABw5SUMhUdMm3Dl/5QAAEyb8tH//+Ri5qfy0YfGjUsAAPLRJQyFR0ybN6QAALK/08w3pImVXo///zekh8aNSwAApN0AALK/08yk3SUMhUdMm6Td///kYuanFKWJlV6P//8UpVLt//+ljhSl///kYuanmctS7f//pY6Zy4fGjUsAAJnLAACyv9PMhaJS7f//pY6FoomVXo///4Wih8aNSwAACeZS7f//pY4J5gAAsr/TzAnm20fmRdtH5kXbR+ZF/Cv72/wr+9v8K/vbUVCU91FQlPdRUJT3wHhNMcB4TTHAeE0xdDhc6XQ4XOl0OFzpFZGO5xWRjucVkY7nQ585EEOfORBDnzkQCJVMIQiVTCEIlUwhlOrEh5TqxIeU6sSH1ZQi0dWUItHVlCLR")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_x1i0j")
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+emitting = false
+amount = 13
+lifetime = 1.64
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_iej6u")
+draw_pass_1 = SubResource("ArrayMesh_qbl4e")
