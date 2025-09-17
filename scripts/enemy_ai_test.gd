@@ -1,9 +1,15 @@
 extends CharacterBody3D
+class_name MeleeNavigationEnemy
 
 @export var navigation_agent : NavigationAgent3D
 
+@onready var other_enemies = get_tree().get_nodes_in_group("enemy_melee") ## so the enemies dont get stuck lol
+
 var CheckCastDelta : float = 0.0
 var CheckCastRand : float = randf_range(5,15)
+
+var health = 50
+var max_health = 50
 
 var OptimDelta : float = 0.0
 var OptimDeltaRand : float = randf()
@@ -17,7 +23,9 @@ var current_state = STATES.CHASE
 @export var target : Node3D
 
 func take_damage(damage):
-	queue_free()
+	health -= damage
+	if health <= 0:
+		queue_free()
 
 
 func _ready() -> void:
@@ -26,7 +34,7 @@ func _ready() -> void:
 func set_movement_target(movement_target: Vector3):
 	navigation_agent.set_target_position(movement_target)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	handle_states()
 	# Do not query when the map has never synchronized and is empty.
 	if NavigationServer3D.map_get_iteration_id(navigation_agent.get_navigation_map()) == 0:
@@ -45,6 +53,22 @@ func _on_velocity_computed(safe_velocity: Vector3):
 	velocity = safe_velocity
 	move_and_slide()
 
+
+func GetClosestEnemyDistance(globalvector : Vector3):
+	var dist_array = []
+	for i in other_enemies:
+		if i and i != self:
+			dist_array.append(i.global_position.distance_to(globalvector))
+	
+	
+	var TrueCool = 0.0 # i did not have any name ideas sorry
+	for i in dist_array:
+		if i < TrueCool:
+			TrueCool = i
+	
+	return TrueCool
+
+
 func handle_states():
 	match current_state:
 		STATES.IDLE:
@@ -53,7 +77,7 @@ func handle_states():
 			if target and navigation_agent.is_navigation_finished():
 				OptimDelta += get_process_delta_time()
 				if OptimDelta >= OptimDeltaRand:
-					if target.global_position.distance_to(global_position) > 15:
+					if target.global_position.distance_to(global_position) > 10 and GetClosestEnemyDistance(target.global_position) > 10:
 						set_movement_target(target.global_position + Vector3(randf_range(-5,5),0,randf_range(-5,5)))
 					else:
 						set_movement_target(target.global_position)

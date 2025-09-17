@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://3uhxbbg53qlt"]
+[gd_scene load_steps=8 format=4 uid="uid://3uhxbbg53qlt"]
+
+[ext_resource type="Texture2D" uid="uid://bmjwdol3yvk6k" path="res://models/Normals/RockNormalMap.jpg" id="1_qbl4e"]
 
 [sub_resource type="Curve" id="Curve_iej6u"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.984694, 0), 0.0, 0.0, 0, 0]
@@ -8,12 +10,17 @@ point_count = 2
 curve = SubResource("Curve_iej6u")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iej6u"]
-emission_shape = 1
-emission_sphere_radius = 1.0
+emission_shape = 6
+emission_ring_axis = Vector3(0, -1, 0)
+emission_ring_height = 0.35
+emission_ring_radius = 3.0
+emission_ring_inner_radius = 3.0
+emission_ring_cone_angle = 2.25
 angle_min = -720.0
 angle_max = 720.0
+inherit_velocity_ratio = -0.02
 direction = Vector3(0, 1, 0)
-spread = 51.225
+spread = 0.0
 initial_velocity_min = 5.07
 initial_velocity_max = 23.72
 scale_min = 0.0
@@ -23,7 +30,10 @@ collision_mode = 1
 collision_friction = 0.6
 collision_bounce = 0.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nktu7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sis4k"]
+albedo_color = Color(0.479183, 0.479183, 0.479183, 1)
+normal_enabled = true
+normal_texture = ExtResource("1_qbl4e")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_x1i0j"]
 _surfaces = [{
@@ -46,7 +56,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 30,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcAGAAZABoAGwAcAB0A"),
-"material": SubResource("StandardMaterial3D_nktu7"),
+"material": SubResource("StandardMaterial3D_sis4k"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 30,
@@ -57,8 +67,8 @@ shadow_mesh = SubResource("ArrayMesh_x1i0j")
 
 [node name="GPUParticles3D" type="GPUParticles3D"]
 emitting = false
-amount = 13
-lifetime = 1.64
+amount = 38
+lifetime = 1.51
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_iej6u")

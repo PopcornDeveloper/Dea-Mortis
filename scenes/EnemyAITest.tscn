@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f6yh4"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("navigation_agent") groups=["damage"]]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("navigation_agent") groups=["damage", "enemy_melee"]]
 script = ExtResource("1_f6yh4")
 navigation_agent = NodePath("NavigationAgent3D")
 
@@ -17,3 +17,5 @@ mesh = SubResource("CapsuleMesh_v8njc")
 shape = SubResource("CapsuleShape3D_f6yh4")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+radius = 0.75

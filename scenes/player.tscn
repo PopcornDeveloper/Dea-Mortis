@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bvk0rqnpn3d6c"]
+[gd_scene load_steps=32 format=4 uid="uid://bvk0rqnpn3d6c"]
 
 [ext_resource type="Script" uid="uid://10plxce844g" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://3uhxbbg53qlt" path="res://scenes/RockBurst.tscn" id="2_fjrip"]
@@ -159,10 +159,10 @@ tracks/0/path = NodePath("rapier:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(-0.415, 0, 0.15, 0.35, 0.45125, 0.49125, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(-0.415, 0, 0.15, 0.35, 0.45125, 0.5, 0.525, 0.56, 0.6, 0.65, 0.67, 0.718433, 0.785, 0.84, 0.88, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1.26441, 2.39845, -0.787473), Vector3(1.20174, 2.59021, -0.703396), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.20174, 2.59021, -0.703396)]
+"values": [Vector3(1.26441, 2.39845, -0.787473), Vector3(1.20174, 2.59021, -0.703396), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.26441, 2.39845, -0.787473), Vector3(1.20174, 2.59021, -0.703396)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -171,10 +171,10 @@ tracks/1/path = NodePath("rapier:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(-0.26, 0, 0.15, 0.35, 0.41125, 0.49, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(-0.26, 0, 0.15, 0.35, 0.41125, 0.5, 0.525, 0.56, 0.6, 0.65, 0.67, 0.718433, 0.785, 0.84, 0.905, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.075, -0.232, -0.808), Vector3(0.305, -0.432, -0.638), Vector3(0.115, -0.247, -0.138), Vector3(0.115, -0.247, -0.138), Vector3(0.075, -0.227, -0.403), Vector3(0.075, -0.232, -0.808), Vector3(0.305, -0.432, -0.638)]
+"values": [Vector3(0.075, -0.232, -0.808), Vector3(0.305, -0.432, -0.638), Vector3(0.115, -0.247, -0.138), Vector3(0.115, -0.247, -0.138), Vector3(0.075, -0.227, -0.403), Vector3(0.075, -0.232, -0.808), Vector3(0.075, -0.232, -0.808), Vector3(0.075, -0.232, -0.808), Vector3(0.075, -0.232, -0.808), Vector3(0.075, -0.232, -0.808), Vector3(0.075, -0.232, -0.808), Vector3(0.075, -0.232, -0.808), Vector3(0.075, -0.232, -0.808), Vector3(0.075, -0.232, -0.808), Vector3(0.075, -0.232, -0.808), Vector3(0.305, -0.432, -0.638)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -183,10 +183,10 @@ tracks/2/path = NodePath("../../../Camera3D:rotation")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.35, 0.49, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.15, 0.35, 0.49, 0.905, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.0872665), Vector3(0, 0, -0.0872665), Vector3(0.0436332, -0.0261799, 0.18326), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.0872665), Vector3(0, 0, -0.0872665), Vector3(0.0436332, -0.0261799, 0.18326), Vector3(0.0436332, -0.0261799, 0.18326), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_dqkch"]
@@ -257,6 +257,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_tuyoq"]
 resource_name = "Cut"
+length = 0.6
 step = 0.005
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -265,10 +266,10 @@ tracks/0/path = NodePath("rapier:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.155, 0.46, 0.535, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.105, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1.20174, 2.59021, -0.703396), Vector3(-0.260054, 3.21664, 0.237365), Vector3(0.647517, 6.7073, 2.90248), Vector3(0.647517, 6.7073, 2.90248), Vector3(1.20174, 2.59021, -0.703396)]
+"values": [Vector3(1.20174, 2.59021, -0.703396), Vector3(-0.260054, 3.21664, 0.237365), Vector3(0.647517, 6.7073, 2.90248), Vector3(1.20174, 2.59021, -0.703396)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -277,10 +278,10 @@ tracks/1/path = NodePath("rapier:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.155, 0.46, 0.535, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.105, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.305, -0.432, -0.638), Vector3(0.178, -0.306, -0.44), Vector3(-0.102775, -0.299259, -0.516553), Vector3(-0.102775, -0.299259, -0.516553), Vector3(0.305, -0.432, -0.638)]
+"values": [Vector3(0.305, -0.432, -0.638), Vector3(0.178, -0.306, -0.44), Vector3(-0.102775, -0.299259, -0.516553), Vector3(0.305, -0.432, -0.638)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -345,14 +346,49 @@ _data = {
 &"thrust": SubResource("Animation_qlg0r")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fjrip"]
+size = Vector3(10.615, 11.97, 24.565)
+
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_qhqgy"]
 length = 0.284951
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("fall_detect_cast", "head")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_fjrip"]
+radius = 1.731
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fjrip"]
+particle_flag_align_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, -1)
+emission_ring_height = 0.0
+emission_ring_radius = 0.0
+emission_ring_inner_radius = 18.7
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 1)
+spread = 0.0
+initial_velocity_min = 73.33
+initial_velocity_max = 302.63
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjrip"]
+transparency = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_color = Color(2.0032377, 2.0032377, 1.2764184, 0.23529412)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fjrip"]
+material = SubResource("StandardMaterial3D_fjrip")
+top_radius = 0.0
+bottom_radius = 0.005
+height = 2.01
+
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("fall_detect_cast", "swoosh_particles", "head")]
 wall_min_slide_angle = 0.942478
 script = ExtResource("1_3vyb7")
-fall_detect_cast = NodePath("RayCast3D")
+fall_detect_cast = NodePath("ShapeCast3D")
 rockburst = ExtResource("2_fjrip")
+swoosh_particles = NodePath("GPUParticles3D")
 head = NodePath("Head")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -374,8 +410,9 @@ script = ExtResource("2_g2els")
 
 [node name="Weapons" type="Node3D" parent="Head/Hand"]
 
-[node name="Rapier" type="Node3D" parent="Head/Hand/Weapons" node_paths=PackedStringArray("head", "camera", "player", "swing_sound", "cast", "animation_player")]
+[node name="Rapier" type="Node3D" parent="Head/Hand/Weapons" node_paths=PackedStringArray("shape_cast", "head", "camera", "player", "swing_sound", "cast", "animation_player")]
 script = ExtResource("3_qhqgy")
+shape_cast = NodePath("ShapeCast3D")
 head = NodePath("../../..")
 camera = NodePath("../../../Camera3D")
 player = NodePath("../../../..")
@@ -392,7 +429,7 @@ thrust_range = 3.0
 cut_range = 2.0
 
 [node name="rapier" type="Node3D" parent="Head/Hand/Weapons/Rapier"]
-transform = Transform3D(-0.0917371, -0.0169413, 0.0179528, -0.0221661, 0.0261359, -0.0886034, 0.0108615, -0.0897491, -0.0291911, 0.305, -0.432, -0.638)
+transform = Transform3D(-0.09173708, -0.016941285, 0.017952789, -0.022166144, 0.02613591, -0.08860341, 0.010861521, -0.08974912, -0.029191084, 0.305, -0.432, -0.638)
 
 [node name="Cylinder" type="MeshInstance3D" parent="Head/Hand/Weapons/Rapier/rapier"]
 mesh = SubResource("ArrayMesh_civga")
@@ -427,6 +464,11 @@ transform = Transform3D(1, 1.49012e-08, -1.49012e-08, -1.49012e-08, 1, 0, 1.4901
 stream = ExtResource("4_dqkch")
 volume_db = 2.0
 max_db = 4.0
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="Head/Hand/Weapons/Rapier"]
+transform = Transform3D(0.095, 0, 0, 0, 0.095, 0, 0, 0, 0.0949999, 0, -0.198654, -1.32426)
+shape = SubResource("BoxShape3D_fjrip")
+target_position = Vector3(0, 0, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.00844726, -0.999964, 0, 0.999964, 0.00844726, 0, -0.700742, -0.505088)
@@ -477,10 +519,6 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "fps : "
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.963845, 0)
-target_position = Vector3(0, -0.825, 0)
-
 [node name="Crack" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 stream = ExtResource("5_qlg0r")
@@ -488,3 +526,15 @@ volume_db = -45.847
 unit_size = 79.53
 max_db = 6.0
 pitch_scale = 1.9
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.12087, 0)
+shape = SubResource("SphereShape3D_fjrip")
+target_position = Vector3(0, -0.62, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.09500003, 0, 0, 0, 0.09499997, 0, 0, 0, 0.094999924, 0, 0.35, -0.075)
+amount = 113
+lifetime = 0.05
+process_material = SubResource("ParticleProcessMaterial_fjrip")
+draw_pass_1 = SubResource("CylinderMesh_fjrip")
