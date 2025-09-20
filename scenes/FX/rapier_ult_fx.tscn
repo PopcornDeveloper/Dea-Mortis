@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0286fpu83ps6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rkyqk"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(18.892157, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mf5i6"]
+material = SubResource("StandardMaterial3D_rkyqk")
+top_radius = 20.0
+bottom_radius = 20.0
+height = 9999099.0
+radial_segments = 32
+rings = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+mesh = SubResource("CylinderMesh_mf5i6")

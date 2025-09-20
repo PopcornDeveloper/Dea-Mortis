@@ -1,8 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://dt1wgxtqv7rjk"]
+[gd_scene load_steps=7 format=3 uid="uid://dt1wgxtqv7rjk"]
 
 [ext_resource type="Script" uid="uid://cg2puqit678ev" path="res://scripts/enemy_ai_test.gd" id="1_f6yh4"]
+[ext_resource type="ArrayOccluder3D" uid="uid://cciuilkyvgi5n" path="res://scenes/EnemyAITest.occ" id="2_hortg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hortg"]
+render_priority = 1
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(1, 0.28730625, 0.22523737, 1)
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6yh4"]
+next_pass = SubResource("StandardMaterial3D_hortg")
+metallic_specular = 1.0
+stencil_mode = 2
+stencil_flags = 2
+stencil_color = Color(1, 0.28730625, 0.22523737, 1)
+stencil_outline_thickness = 0.145
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v8njc"]
+material = SubResource("StandardMaterial3D_f6yh4")
+radial_segments = 8
+rings = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f6yh4"]
 
@@ -19,3 +42,8 @@ shape = SubResource("CapsuleShape3D_f6yh4")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 radius = 0.75
+debug_enabled = true
+debug_path_custom_point_size = 0.1
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+occluder = ExtResource("2_hortg")

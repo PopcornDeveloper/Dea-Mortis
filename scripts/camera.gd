@@ -16,6 +16,8 @@ func _process(delta: float) -> void:
 
 		h_offset = randomOffset().x
 		v_offset = randomOffset().y
+		get_child(0).position.x = h_offset
+		get_child(0).position.y = v_offset
 
 func randomOffset() -> Vector2:
 	return Vector2(rng.randf_range(-shake_strength,shake_strength),rng.randf_range(-shake_strength,shake_strength))

@@ -10,14 +10,19 @@ var direction : Vector3
 
 var speed : float = 6.5
 var accel : float = 40.0
-var friction : float = 20.0
+var friction : float = 50.0
 
 var sensitivity := 0.25
 
-@export var swoosh_particles : GPUParticles3D
+@export var swoosh_particles : Node3D
 @export var head : Node3D
 
+var move_amounts : Array
+
 func _ready() -> void:
+	for i in swoosh_particles.get_children():
+		if i is MeshInstance3D:
+			move_amounts.append(randf_range(-10,10))
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event):
@@ -27,17 +32,20 @@ func _input(event):
 var superjump_meter := 0.0
 
 func _process(delta: float) -> void:
-	if velocity.y < -10.0 and velocity.y < 0.0:
-		swoosh_particles.position.y = -0.5
-	else:
-		swoosh_particles.look_at(velocity * 300)
-	if velocity.length() > 10.0 or (velocity.y < -10.0 and velocity.y < 0.0):
-	
-		swoosh_particles.emitting = true
-	else:
-		swoosh_particles.emitting = false
+	if Input.is_action_just_pressed("enable_mouse"):
+		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	
+	swoosh_particles.scale = lerp(swoosh_particles.scale, Vector3(0.005,0.005,0.005), 5 * delta)
+
+	swoosh_particles.get_child(0).material_override.albedo_color.a = lerpf(swoosh_particles.get_child(0).material_override.albedo_color.a, 0, 10 * delta) 
+	
+	for i : MeshInstance3D in swoosh_particles.get_children():
+		i.rotate_y(move_amounts[i.get_index()] * delta)	
+
 	if fall_detect_cast.is_colliding() and velocity.y <= -10:
 		$Crack.volume_db = -37 + -velocity.y / 50 + randf_range(-0.5,0.5)
 		var new : GPUParticles3D = rockburst.instantiate()
@@ -101,10 +109,10 @@ func _process(delta: float) -> void:
 				velocity.x = move_toward(velocity.x, direction.x * speed, accel * delta)
 				velocity.z = move_toward(velocity.z, direction.z * speed, accel * delta)
 		else:
-			velocity.x = move_toward(velocity.x, direction.x * speed, friction * delta)
-			velocity.z = move_toward(velocity.z, direction.z * speed, friction * delta)
+			velocity.x = move_toward(velocity.x, 0.0, friction * delta)
+			velocity.z = move_toward(velocity.z, 0.0, friction * delta)
 	else:
-		velocity.y -= 15.34 * delta
+		velocity.y -= 15.34 * delta #15.34
 		if not direction.is_zero_approx():
 			velocity.x = move_toward(velocity.x, direction.x * speed / 3, accel * delta)
 			velocity.z = move_toward(velocity.z, direction.z * speed / 3, accel * delta)
