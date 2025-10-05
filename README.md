@@ -1,2 +1,6 @@
+### Shitty Description
 kill ppl i guess
 anyway have fun
+
+### Contributing
+to contribute open a pull request
