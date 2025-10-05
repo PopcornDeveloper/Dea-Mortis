@@ -374,7 +374,7 @@ length = 0.284951
 [sub_resource type="SphereShape3D" id="SphereShape3D_fjrip"]
 radius = 1.261
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("fall_detect_cast", "swoosh_particles", "head")]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("fall_detect_cast", "swoosh_particles", "head") groups=["player"]]
 wall_min_slide_angle = 0.942478
 script = ExtResource("1_3vyb7")
 fall_detect_cast = NodePath("ShapeCast3D")

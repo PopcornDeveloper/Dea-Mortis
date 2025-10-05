@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2arkrlianrri"]
+
+[ext_resource type="Script" uid="uid://bd3x1m8ykuf42" path="res://scripts/enemy_melee_navigation.gd" id="1_blggq"]
+[ext_resource type="Script" uid="uid://do1aixkrrw0ll" path="res://scripts/MeleeNavigation.gd" id="2_ewwsv"]
+[ext_resource type="ArrayOccluder3D" uid="uid://cciuilkyvgi5n" path="res://scenes/EnemyAITest.occ" id="2_nnkv7"]
+[ext_resource type="Script" uid="uid://dmut0qggm8hkn" path="res://scripts/StateMachine/FiniteStateMachine.gd" id="4_ewwsv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hortg"]
+render_priority = 1
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(1, 0.28730625, 0.22523737, 1)
+grow_amount = 0.145
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6yh4"]
+next_pass = SubResource("StandardMaterial3D_hortg")
+metallic_specular = 1.0
+stencil_mode = 2
+stencil_flags = 2
+stencil_color = Color(1, 0.28730625, 0.22523737, 1)
+stencil_outline_thickness = 0.145
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_v8njc"]
+material = SubResource("StandardMaterial3D_f6yh4")
+radial_segments = 8
+rings = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f6yh4"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("navigation_agent") groups=["damage", "enemy_melee"]]
+script = ExtResource("1_blggq")
+navigation_agent = NodePath("NavigationAgent3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_v8njc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_f6yh4")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+radius = 0.75
+debug_path_custom_point_size = 0.1
+script = ExtResource("2_ewwsv")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+occluder = ExtResource("2_nnkv7")
+
+[node name="FiniteStateMachine" type="Node" parent="."]
+script = ExtResource("4_ewwsv")
+STATES = null

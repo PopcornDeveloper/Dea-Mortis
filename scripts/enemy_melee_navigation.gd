@@ -2,14 +2,11 @@ extends CharacterBody3D
 class_name MeleeNavigationEnemy
 
 @export var navigation_agent : NavigationAgent3D
-
-@onready var other_enemies = get_tree().get_nodes_in_group("enemy_melee") ## so the enemies dont get stuck lol
-
 var health = 50
 var max_health = 50
 
-var OptimDelta : float = 0.0
-var OptimDeltaRand : float = randf()
+var OptimDelta : int = 0
+var OptimDeltaRand : int = randi_range(20,60)
 
 enum STATES {
 	IDLE,
@@ -51,30 +48,13 @@ func _on_velocity_computed(safe_velocity: Vector3):
 	velocity = safe_velocity
 	move_and_slide()
 
-func GetClosestEnemyDistance(globalvector : Vector3):
-	var dist_array = []
-	for i in other_enemies:
-		if i and i != self:
-			dist_array.append(i.global_position.distance_to(globalvector))
-	
-	
-	var TrueCool = 0.0 # i did not have any name ideas sorry
-	for i in dist_array:
-		if i < TrueCool:
-			TrueCool = i
-	
-	return TrueCool
-
 
 func handle_states():
 	match current_state:
 		STATES.IDLE:
 			pass
 		STATES.CHASE:
-			if target and navigation_agent.is_navigation_finished():
-				OptimDelta += get_process_delta_time()
-				if OptimDelta >= OptimDeltaRand:
-					if target.global_position.distance_to(global_position) > 10 and GetClosestEnemyDistance(target.global_position) > 10:
-						set_movement_target(target.global_position + Vector3(randf_range(-100,100),0,randf_range(-100,100)))
-					else:
-						set_movement_target(target.global_position)
+			OptimDelta += 1
+			if OptimDelta >= OptimDeltaRand:
+				set_movement_target(target.global_position)
+				OptimDelta = 0

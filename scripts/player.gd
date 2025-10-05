@@ -32,6 +32,7 @@ func _input(event):
 var superjump_meter := 0.0
 
 func _process(delta: float) -> void:
+	print(velocity)
 	if Input.is_action_just_pressed("enable_mouse"):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -68,16 +69,25 @@ func _process(delta: float) -> void:
 	mouse_mov = lerp(mouse_mov, Vector2.ZERO, 10 * delta)
 	
 	
-
 	direction = Vector3.ZERO
 	if Input.is_action_pressed("forward"):
-		direction -= transform.basis.z
+		direction.z -= 1.0
 	if Input.is_action_pressed("backward"):
-		direction += transform.basis.z
+		direction.z += 1.0
 	if Input.is_action_pressed("left"):
-		direction -= transform.basis.x
+		direction.x -= 1.0
 	if Input.is_action_pressed("right"):
-		direction += transform.basis.x
+		direction.x += 1.0
+	# Currently, the vector's length is greater than 1 while trying to move diagonally
+	# This means the player moves faster in diagonals than when going in cardinal directions
+	# (which is not very good)
+	# Normalizing the vector ensures the length will always be 1, and the movement speed
+	# will be the same regardless of if the player is moving diagonally or not
+	direction = direction.normalized()
+
+	# Because we aren't using the transforms for the direction anymore, we need to rotate
+	# the vector using our yaw so movement is aligned with it
+	direction = direction.rotated(Vector3(0, 1, 0), rotation.y)
 	head.rotation_degrees = Vector3(head.rotation_degrees.x + sensitivity * mouse_mov.y, 0, 0)
 	rotation_degrees = Vector3(0, self.rotation_degrees.y + sensitivity * mouse_mov.x, 0)
 
@@ -103,19 +113,15 @@ func _process(delta: float) -> void:
 
 		if not direction.is_zero_approx():
 			if Input.is_action_pressed("crouch"):
-				velocity.x = move_toward(velocity.x, direction.x * speed / 3, accel * delta)
-				velocity.z = move_toward(velocity.z, direction.z * speed / 3, accel * delta)
+				velocity = velocity.move_toward(Vector3(direction.x * speed / 3, velocity.y, direction.z * speed / 3), friction * delta)
 			else:
-				velocity.x = move_toward(velocity.x, direction.x * speed, accel * delta)
-				velocity.z = move_toward(velocity.z, direction.z * speed, accel * delta)
+				velocity = velocity.move_toward(Vector3(direction.x * speed, velocity.y, direction.z * speed), friction * delta)
 		else:
-			velocity.x = move_toward(velocity.x, 0.0, friction * delta)
-			velocity.z = move_toward(velocity.z, 0.0, friction * delta)
+			velocity = velocity.move_toward(Vector3(0, velocity.y, 0), friction * delta)
 	else:
 		velocity.y -= 15.34 * delta #15.34
 		if not direction.is_zero_approx():
-			velocity.x = move_toward(velocity.x, direction.x * speed / 3, accel * delta)
-			velocity.z = move_toward(velocity.z, direction.z * speed / 3, accel * delta)
+			velocity = velocity.move_toward(Vector3(direction.x * speed, velocity.y, direction.z * speed), friction * delta)
 
 func _physics_process(delta: float) -> void:
 	$"CanvasLayer/FPSLabel".text = "fps : " + str(Engine.get_frames_per_second()) + " | speed : " + str(velocity.length())

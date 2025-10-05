@@ -69,6 +69,8 @@ func MegaThrust(): ##Specil Ability
 	
 	if player.is_on_floor():
 		player.velocity += -player.transform.basis.z * 50
+		print(player.velocity)
+
 		airborne = false
 	else:
 		airborne = true
@@ -79,7 +81,10 @@ func MegaThrust(): ##Specil Ability
 				player.velocity.y += -head.transform.basis.z.y * 50
 				player.velocity.x += -player.transform.basis.z.x * 50
 				player.velocity.z += -player.transform.basis.z.z * 50
+				print(player.velocity)
 			else:
+				print(player.velocity)
+
 				player.velocity.y += -head.transform.basis.z.y * 10
 				player.velocity.x += -player.transform.basis.z.x * 50
 				player.velocity.z += -player.transform.basis.z.z * 50
