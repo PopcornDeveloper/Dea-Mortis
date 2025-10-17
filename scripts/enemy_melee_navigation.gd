@@ -2,8 +2,8 @@ extends CharacterBody3D
 class_name MeleeNavigationEnemy
 
 @export var navigation_agent : NavigationAgent3D
-var health = 50
-var max_health = 50
+@export var health = 50
+@export var max_health = 50
 
 var OptimDelta : int = 0
 var OptimDeltaRand : int = randi_range(20,60)

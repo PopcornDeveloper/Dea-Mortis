@@ -14,6 +14,11 @@ var friction : float = 50.0
 
 var sensitivity := 0.25
 
+
+@export var crack_sound : AudioStreamPlayer3D
+@export var walking_sound : AudioStreamPlayer
+@export var superjump_bar : ColorRect
+@export var camera : Camera3D
 @export var swoosh_particles : Node3D
 @export var head : Node3D
 
@@ -39,7 +44,7 @@ func _process(delta: float) -> void:
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
-	
+		
 	swoosh_particles.scale = lerp(swoosh_particles.scale, Vector3(0.005,0.005,0.005), 5 * delta)
 
 	swoosh_particles.get_child(0).material_override.albedo_color.a = lerpf(swoosh_particles.get_child(0).material_override.albedo_color.a, 0, 10 * delta) 
@@ -48,21 +53,21 @@ func _process(delta: float) -> void:
 		i.rotate_y(move_amounts[i.get_index()] * delta)	
 
 	if fall_detect_cast.is_colliding() and velocity.y <= -10:
-		$Crack.volume_db = -37 + -velocity.y / 50 + randf_range(-0.5,0.5)
+		crack_sound.volume_db = -37 + -velocity.y / 50 + randf_range(-0.5,0.5)
 		var new : GPUParticles3D = rockburst.instantiate()
 		
 		get_tree().get_root().add_child(new)
 		new.global_position = fall_detect_cast.global_position
 		new.restart()
 
-		if not $Crack.playing:
-			$Crack.play()
-		$Head/Camera3D.apply_shake(-velocity.y / 70)
+		if not crack_sound.playing:
+			crack_sound.play()
+		camera.apply_shake(-velocity.y / 70)
 		for i in fall_detect_cast.get_collision_count():
 			var collider = fall_detect_cast.get_collider(i)
 			if collider and collider.is_in_group("damage"):
 				collider.take_damage(-velocity.y * 2)
-	$CanvasLayer/Control/ColorRect.scale.x = superjump_meter * 2
+	superjump_bar.scale.x = superjump_meter * 2
 	if not Input.is_action_pressed("crouch"):
 		superjump_meter = lerpf(superjump_meter, 0.0, 10 * delta)
 	
@@ -78,6 +83,17 @@ func _process(delta: float) -> void:
 		direction.x -= 1.0
 	if Input.is_action_pressed("right"):
 		direction.x += 1.0
+		
+	if not walking_sound.playing:
+		walking_sound.play()
+	if is_on_floor():
+		if not direction.is_zero_approx():
+			walking_sound.volume_db = 0
+		else:
+			walking_sound.volume_db = lerpf(walking_sound.volume_db, -200, 10 * delta)
+	else:
+		walking_sound.volume_db = lerpf(walking_sound.volume_db, -200, 10 * delta)
+	
 	# Currently, the vector's length is greater than 1 while trying to move diagonally
 	# This means the player moves faster in diagonals than when going in cardinal directions
 	# (which is not very good)
